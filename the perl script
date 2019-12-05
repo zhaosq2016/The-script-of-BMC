@@ -1,0 +1,27 @@
+#!/usr/bin/perl -w
+open ID, "$ARGV[0]" || die $!;
+while(<ID>){
+   chomp;
+   @ara=split /\t/, $_;
+ open PATH,"$ARGV[1]" || die $!;
+ while($line = <PATH>){
+     chomp $line;
+     @ko =split /\t/, $line;
+    if($ko[0] eq $ara[0] && $ko[5] eq $ara[3]){
+      if($ko[1] <= $ara[1] && $ko[6] > $ara[2]){
+      push (@ara, "UTR5");
+      }elsif($ara[1] >= $ko[1] && $ara[1] < $ko[6] && $ara[2] > $ko[6] && $ara[2] < $ko[7]){
+       push (@ara, "UTR5_CDS");
+      }elsif($ara[1] > $ko[6] && $ara[2] < $ko[7]){
+       push (@ara, "CDS");
+      }elsif($ara[1] > $ko[6] && $ara[1] < $ko[7] && $ara[2] > $ko[7] && $ara[2] <= $ko[2]){
+       push (@ara, "UTR3_CDS");
+      }elsif($ara[1] > $ko[7] && $ara[2] <= $ko[2]){
+       push (@ara, "UTR3");
+       }
+     }
+   }
+  $ke=join "\t",@ara;
+  print "$ke\n";
+  next;
+}
