@@ -12,7 +12,7 @@ while(<ID>){
       push (@ara, "UTR5");
       }elsif($ara[1] >= $ko[1] && $ara[1] < $ko[6] && $ara[2] > $ko[6] && $ara[2] < $ko[7]){
        push (@ara, "UTR5_CDS");
-      }elsif($ara[1] > $ko[6] && $ara[2] < $ko[7]){
+      }elsif($ara[1] >= $ko[6] && $ara[2] <= $ko[7]){
        push (@ara, "CDS");
       }elsif($ara[1] > $ko[6] && $ara[1] < $ko[7] && $ara[2] > $ko[7] && $ara[2] <= $ko[2]){
        push (@ara, "UTR3_CDS");
